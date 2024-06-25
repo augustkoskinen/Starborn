@@ -35,8 +35,12 @@
   "name":"Starborn",
   "resources":[
     {"id":{"name":"oCam","path":"objects/oCam/oCam.yy",},},
+    {"id":{"name":"oPlanet","path":"objects/oPlanet/oPlanet.yy",},},
+    {"id":{"name":"oPlanetManager","path":"objects/oPlanetManager/oPlanetManager.yy",},},
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"scr_get_gravity","path":"scripts/scr_get_gravity/scr_get_gravity.yy",},},
+    {"id":{"name":"sPlanet","path":"sprites/sPlanet/sPlanet.yy",},},
     {"id":{"name":"sPlayer","path":"sprites/sPlayer/sPlayer.yy",},},
     {"id":{"name":"sPlayerWL","path":"sprites/sPlayerWL/sPlayerWL.yy",},},
     {"id":{"name":"sPlayerWR","path":"sprites/sPlayerWR/sPlayerWR.yy",},},

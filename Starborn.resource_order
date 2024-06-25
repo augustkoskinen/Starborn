@@ -18,6 +18,9 @@
   ],
   "ResourceOrderSettings":[
     {"name":"oCam","order":1,"path":"objects/oCam/oCam.yy",},
+    {"name":"oPlanet","order":2,"path":"objects/oPlanet/oPlanet.yy",},
+    {"name":"oPlanetManager","order":3,"path":"objects/oPlanetManager/oPlanetManager.yy",},
+    {"name":"sPlanet","order":3,"path":"sprites/sPlanet/sPlanet.yy",},
     {"name":"sPlayerWL","order":1,"path":"sprites/sPlayerWL/sPlayerWL.yy",},
     {"name":"sPlayerWR","order":2,"path":"sprites/sPlayerWR/sPlayerWR.yy",},
   ],
