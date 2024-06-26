@@ -24,8 +24,18 @@ if(curmove>0) {
 	}
 }
 
-if(grounded&&keyboard_check(vk_space))
+if(grounded&&keyboard_check(vk_space)) {
 	jumpvel = JUMP_SPEED;
+	held_space = .1;
+}
+if(held_space>0) {
+	if(!keyboard_check(vk_space)) held_space = 0;
+	else {
+		held_space-=_dt;
+		jumpvel = JUMP_SPEED;
+	}
+	
+}
 
 var planet = scr_get_closest_planet(self, oPlanetManager.planetList);
 var g = _dt*scr_get_gravity(1,planet.mass,point_distance(x,y,planet.x,planet.y));

@@ -28,7 +28,7 @@
   "physicsStartAwake":true,
   "properties":[
     {"$GMObjectProperty":"v1","%Name":"radius","filters":[],"listItems":[],"multiselect":false,"name":"radius","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"160","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"mass","filters":[],"listItems":[],"multiselect":false,"name":"mass","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1.5","varType":0,},
+    {"$GMObjectProperty":"v1","%Name":"mass","filters":[],"listItems":[],"multiselect":false,"name":"mass","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"20","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

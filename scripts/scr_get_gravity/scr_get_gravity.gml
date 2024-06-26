@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
 function scr_get_gravity(m1, m2, d){
-	var GRAVITATIONAL_CONSTANT = 1*power(10,13);
+	var GRAVITATIONAL_CONSTANT = 1*power(10,12);
 	return ((GRAVITATIONAL_CONSTANT*m1*m2)/power(d,5));
 }
 
