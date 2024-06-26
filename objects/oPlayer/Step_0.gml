@@ -38,23 +38,64 @@ if(held_space>0) {
 }
 
 var planet = scr_get_closest_planet(self, oPlanetManager.planetList);
-var g = _dt*scr_get_gravity(1,planet.mass,point_distance(x,y,planet.x,planet.y));
+var g = _dt*scr_get_gravity(planet, point_distance(x,y,planet.x,planet.y));
 var addplanx = lengthdir_x(g,point_direction(x,y,planet.x,planet.y));
 var addplany = lengthdir_y(g,point_direction(x,y,planet.x,planet.y));
 
-if(point_distance(x,y,planet.x,planet.y)>planet.radius+1) {
-	var collided = array_length(move_and_collide(addplanx, addplany, planet, 10000))>0;
-	if(collided) {
-		x += lengthdir_x(1,image_angle+90);
-		y += lengthdir_y(1,image_angle+90);
-		grounded = true;
-	} else
-		grounded = false;
-} else
-	grounded = true;
+/*
+playercol = MovementMath.DuplicateCirc(sprite.collision);
+if (-1 != MovementMath.CheckCollisions(playercol, CollisionList, new Vector3((float) (netvect.x * Gdx.graphics.getDeltaTime() * SLOWSPEED), 0, 0), sprite.collision.radius-.5f)) {
+	double sign = Math.abs(netvect.x) / (netvect.x);
+	while (-1 == MovementMath.CheckCollisions(playercol, CollisionList, new Vector3((float) (sign), 0, 0), sprite.collision.radius-.5f)) {
+		sprite.addPosition(new Vector3((float) (sign), 0, 0));
+		playercol = MovementMath.DuplicateCirc(sprite.collision);
+	}
+	netvect.x = 0;
+	walkvect.x = 0;
+	jumpvect.x = 0;
+	gpullvect.x = 0;
+}
+sprite.addPosition(new Vector3((float) (netvect.x * Gdx.graphics.getDeltaTime() * SLOWSPEED), 0, 0));
 
-move_and_collide(lengthdir_x(sidemove,image_angle), lengthdir_y(sidemove,image_angle), planet, 100)
-move_and_collide(lengthdir_x(jumpvel,image_angle+90), lengthdir_y(jumpvel,image_angle+90), planet, 100)
+//move y
+playercol = MovementMath.DuplicateCirc(sprite.collision);
+if (-1 != MovementMath.CheckCollisions(playercol, CollisionList, new Vector3(0, (float) (netvect.y * Gdx.graphics.getDeltaTime() * SLOWSPEED), 0), sprite.collision.radius-.5f)) {
+	double sign = Math.abs(netvect.y) / (netvect.y);
+	while (-1 == MovementMath.CheckCollisions(playercol, CollisionList, new Vector3(0, (float) (sign), 0), sprite.collision.radius-.5f)) {
+		sprite.addPosition(new Vector3(0, (float) (sign), 0));
+		playercol = MovementMath.DuplicateCirc(sprite.collision);
+	}
+	netvect.y = 0;
+	walkvect.y = 0;
+	jumpvect.y = 0;
+	gpullvect.y = 0;
+}
+sprite.addPosition(new Vector3(0, (float) (netvect.y * Gdx.graphics.getDeltaTime() * SLOWSPEED), 0));
+*/
+
+var netx = lengthdir_x(jumpvel * _dt,image_angle+90)+lengthdir_x(sidemove,image_angle)+addplanx;
+var nety = lengthdir_y(jumpvel * _dt,image_angle+90)+lengthdir_y(sidemove,image_angle)+addplany;
+
+//12x32
+if (place_meeting(x+netx,y,oCollision)) {
+	while (!place_meeting(x+sign(netx),y,oCollision)) {
+		x += sign(netx);
+	}
+	netx = 0;
+}
+x += netx;
+
+//move y
+if (place_meeting(x,y+nety,oCollision)) {
+	while (!place_meeting(x,y+sign(nety),oCollision)) {
+		y += sign(nety);
+	}
+	nety = 0;
+}
+y += nety;
+
+if(collision_point(x+lengthdir_x(1,image_angle-90),y+lengthdir_y(1,image_angle-90),oCollision, true, true)) grounded = true;
+else grounded = false;
 
 
 jumpvel*=.9;

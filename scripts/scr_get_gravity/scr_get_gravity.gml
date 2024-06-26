@@ -1,9 +1,13 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
-function scr_get_gravity(m1, m2, d){
-	var GRAVITATIONAL_CONSTANT = 1*power(10,12);
-	return ((GRAVITATIONAL_CONSTANT*m1*m2)/power(d,5));
+//((GRAVITATIONAL_CONSTANT*m1*m2)/power(d,5))
+function scr_get_gravity(planet, d){
+	var G_CONST = 150;
+	var G_RANGE = 128
+	var dis = (d-planet.radius);
+	
+	return ((dis<=G_RANGE) ? G_CONST : (G_CONST/(d-planet.radius-G_RANGE)));
 }
 
 function scr_get_closest_planet(player, plist) {

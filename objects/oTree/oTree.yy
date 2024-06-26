@@ -1,21 +1,15 @@
 {
   "$GMObject":"",
-  "%Name":"oPlanet",
-  "eventList":[
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"oTree",
+  "eventList":[],
   "managed":true,
-  "name":"oPlanet",
+  "name":"oTree",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
     "path":"folders/Objects.yy",
   },
-  "parentObjectId":{
-    "name":"oCollision",
-    "path":"objects/oCollision/oCollision.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -34,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sPlanet",
-    "path":"sprites/sPlanet/sPlanet.yy",
+    "name":"sTree",
+    "path":"sprites/sTree/sTree.yy",
   },
   "spriteMaskId":null,
   "visible":true,
