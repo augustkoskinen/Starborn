@@ -1,3 +1,5 @@
+global.addbuffer = 3;
+
 inventoryopen = false;
 
 grounded = 0;

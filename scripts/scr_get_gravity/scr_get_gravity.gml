@@ -4,10 +4,11 @@
 //((GRAVITATIONAL_CONSTANT*m1*m2)/power(d,5))
 function scr_get_gravity(planet, d){
 	var G_CONST = 150;
-	var G_RANGE = 128
+	var G_RANGE = 128+global.addbuffer; //+3
 	var dis = (d-planet.radius);
 	
-	return ((dis<=G_RANGE) ? (dis<=1 ? 0 : G_CONST) : (G_CONST/(d-planet.radius-G_RANGE)));
+	//((dis<=G_RANGE) ? (dis<=global.addbuffer ? 0 : G_CONST) : (G_CONST/(d-planet.radius-G_RANGE)));
+	return ((dis<=G_RANGE) ? (G_CONST) : (G_CONST/(d-planet.radius-G_RANGE)));
 }
 
 function scr_get_closest_planet(player, plist) {

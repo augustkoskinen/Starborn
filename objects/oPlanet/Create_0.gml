@@ -1,5 +1,5 @@
 treelist = array_create(0);
-radius = 160;
+radius = 160-global.addbuffer;
 
 var reps = random_range(8,10);
 for(var i = 0; i < reps; i++) {

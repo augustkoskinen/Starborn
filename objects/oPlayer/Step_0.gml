@@ -1,5 +1,6 @@
 var curmove = inventoryopen ? 0 : keyboard_check(ord("D"))-keyboard_check(ord("A"));
 var _dt = delta_time / 1000000;
+var precision = 1;
 
 if(keyboard_check_pressed(vk_tab)) inventoryopen = !inventoryopen;
 
@@ -41,14 +42,40 @@ if(held_space>0&&!inventoryopen) {
 
 var planet = scr_get_closest_planet(self, oPlanetManager.planetList);
 image_angle = point_direction(x,y,planet.x,planet.y)+90;
-var g = _dt*scr_get_gravity(planet, point_distance(x,y,planet.x,planet.y));
-var addplanx = lengthdir_x(g,image_angle-90);
-var addplany = lengthdir_y(g,image_angle-90);
 
 var netx = lengthdir_x(jumpvel * _dt,image_angle+90)+lengthdir_x(sidemove,image_angle);
 var nety = lengthdir_y(jumpvel * _dt,image_angle+90)+lengthdir_y(sidemove,image_angle);
 
-var precision = 1;
+if(collision_point(x+lengthdir_x(1,image_angle-90),y+lengthdir_y(1,image_angle-90),oCollision, true, true)) grounded = true;
+else grounded = false;
+
+var g = _dt*scr_get_gravity(planet, point_distance(x,y,planet.x,planet.y));
+
+var addplanx = 0;
+var addplany = 0;
+if(!grounded) {
+	addplanx = lengthdir_x(g,image_angle-90);
+	addplany = lengthdir_y(g,image_angle-90);
+}
+
+//playerinput
+//movex
+if (place_meeting(x+netx,y,oCollision)) {
+	while (!place_meeting(x+sign(netx)*precision,y,oCollision)) {
+		x += sign(netx)*precision;
+	}
+	netx = 0;
+}
+x += netx;
+
+//move y
+if (place_meeting(x,y+nety,oCollision)) {
+	while (!place_meeting(x,y+sign(nety)*precision,oCollision)) {
+		y += sign(nety)*precision;
+	}
+	nety = 0;
+}
+y += nety;
 
 //gravity
 //move x
@@ -87,28 +114,6 @@ if(grounded) {
 	}
 }
 */
-
-//playerinput
-//movex
-if (place_meeting(x+netx,y,oCollision)) {
-	while (!place_meeting(x+sign(netx)*precision,y,oCollision)) {
-		x += sign(netx)*precision;
-	}
-	netx = 0;
-}
-x += netx;
-
-//move y
-if (place_meeting(x,y+nety,oCollision)) {
-	while (!place_meeting(x,y+sign(nety)*precision,oCollision)) {
-		y += sign(nety)*precision;
-	}
-	nety = 0;
-}
-y += nety;
-
-if(collision_point(x+lengthdir_x(2,image_angle-90),y+lengthdir_y(2,image_angle-90),oCollision, true, true)) grounded = true;
-else grounded = false;
 
 
 jumpvel*=.9;
