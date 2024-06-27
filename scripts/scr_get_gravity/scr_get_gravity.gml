@@ -7,7 +7,7 @@ function scr_get_gravity(planet, d){
 	var G_RANGE = 128
 	var dis = (d-planet.radius);
 	
-	return ((dis<=G_RANGE) ? G_CONST : (G_CONST/(d-planet.radius-G_RANGE)));
+	return ((dis<=G_RANGE) ? (dis<=1 ? 0 : G_CONST) : (G_CONST/(d-planet.radius-G_RANGE)));
 }
 
 function scr_get_closest_planet(player, plist) {
