@@ -8,3 +8,6 @@ for(var i = 0; i < reps; i++) {
 	tree.image_angle = dir-90;
 	array_push(treelist, tree);
 }
+
+var box = instance_create_layer(x+lengthdir_x(radius,90), y+lengthdir_y(radius,90), "Trees", oBox);
+box.image_angle = 0;

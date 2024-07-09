@@ -1,15 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"oCollision",
+  "%Name":"oBox",
   "eventList":[],
   "managed":true,
-  "name":"oCollision",
+  "name":"oBox",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
     "path":"folders/Objects.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"oPlanetlessCollision",
+    "path":"objects/oPlanetlessCollision/oPlanetlessCollision.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -27,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sBox",
+    "path":"sprites/sBox/sBox.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

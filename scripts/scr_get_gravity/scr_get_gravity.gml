@@ -18,6 +18,6 @@ function scr_get_closest_planet(player, plist) {
 		if(point_distance(player.x,player.y,array_get(plist,i).x,array_get(plist,i).y)>curdis) {
 			curdis = point_distance(player.x,player.y,array_get(plist,i).x,array_get(plist,i).y);
 			curplanet = array_get(plist,i)
-		}
+		} 
 	return curplanet;
 }

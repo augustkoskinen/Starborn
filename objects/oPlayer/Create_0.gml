@@ -1,4 +1,5 @@
 global.addbuffer = 3;
+global.paused = false;
 
 inventoryopen = false;
 
