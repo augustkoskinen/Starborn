@@ -1,4 +1,4 @@
-global.addbuffer = 3;
+global.addbuffer = 0;
 global.paused = false;
 
 inventoryopen = false;
@@ -7,6 +7,8 @@ grounded = 0;
 moving = 0;
 jumpvel = 0;
 held_space = 0;
+
+movespeed = 0;
 
 SLOPE_ANGLE = 45;
 MOVE_SPEED = 100;
