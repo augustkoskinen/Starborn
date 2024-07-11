@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":105.18245,
+  "duration":117.0,
   "name":"sMain",
   "parent":{
     "name":"Sounds",

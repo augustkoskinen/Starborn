@@ -7,11 +7,11 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
-    "path":"folders/Objects.yy",
+    "path":"folders/Objects/Objects.yy",
   },
   "parentObjectId":{
-    "name":"oPlanetlessCollision",
-    "path":"objects/oPlanetlessCollision/oPlanetlessCollision.yy",
+    "name":"oCollision",
+    "path":"objects/oCollision/oCollision.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

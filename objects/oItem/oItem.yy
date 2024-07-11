@@ -7,7 +7,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
-    "path":"folders/Objects.yy",
+    "path":"folders/Objects/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -28,7 +28,7 @@
     {"$GMObjectProperty":"v1","%Name":"stackable","filters":[],"listItems":[],"multiselect":false,"name":"stackable","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
     {"$GMObjectProperty":"v1","%Name":"amount","filters":[],"listItems":[],"multiselect":false,"name":"amount","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":1,},
     {"$GMObjectProperty":"v1","%Name":"amountmax","filters":[],"listItems":[],"multiselect":false,"name":"amountmax","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":1,},
-    {"$GMObjectProperty":"v1","%Name":"sprite","filters":[],"listItems":[],"multiselect":false,"name":"sprite","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"sItem","varType":5,},
+    {"$GMObjectProperty":"v1","%Name":"sprite","filters":[],"listItems":[],"multiselect":false,"name":"sprite","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"sItem","path":"sprites/sItem/sItem.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"sItem","varType":5,},
     {"$GMObjectProperty":"v1","%Name":"invsprite","filters":[],"listItems":[],"multiselect":false,"name":"invsprite","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"sItemInv","path":"sprites/sItemInv/sItemInv.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"sItemInv","varType":5,},
   ],
   "resourceType":"GMObject",

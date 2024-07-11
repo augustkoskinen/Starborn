@@ -9,12 +9,12 @@
   "name":"oPlanet",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Universe",
+    "path":"folders/Objects/Universe.yy",
   },
   "parentObjectId":{
-    "name":"oTotalCollision",
-    "path":"objects/oTotalCollision/oTotalCollision.yy",
+    "name":"oCollision",
+    "path":"objects/oCollision/oCollision.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

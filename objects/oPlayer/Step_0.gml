@@ -36,7 +36,7 @@ if (!global.paused) {
 	}
 	
 	
-	if(place_meeting(x+lengthdir_x(1,image_angle-90),y+lengthdir_y(1,image_angle-90),oTotalCollision)) grounded = true;
+	if(place_meeting(x+lengthdir_x(1,image_angle-90),y+lengthdir_y(1,image_angle-90),oCollision)) grounded = true;
 	else grounded = false;
 	
 	if(grounded&&keyboard_check(vk_space)&&!inventoryopen) {
@@ -53,19 +53,20 @@ if (!global.paused) {
 		}
 	}
 	
-	//show_debug_message(grounded)
 	var walkx = lengthdir_x(movespeed,image_angle);
 	var walky = lengthdir_y(movespeed,image_angle);
+	var jumpx = lengthdir_x(jumpvel * _dt,image_angle+90);
+	var jumpy = lengthdir_y(jumpvel * _dt,image_angle+90);
 	
-	if (place_meeting(x+walkx,y+walky,oTotalCollision)) {
+	if (place_meeting(x+walkx,y+walky,oCollision)) {
 		var slopex = lengthdir_x(movespeed,movespeed>0 ? image_angle+SLOPE_ANGLE : image_angle-SLOPE_ANGLE)
 		var slopey = lengthdir_y(movespeed,movespeed>0 ? image_angle+SLOPE_ANGLE : image_angle-SLOPE_ANGLE)
 		var curangle = .5;
 
-		if(grounded&&!place_meeting(x+slopex,y+slopey,oTotalCollision)){
+		if(grounded&&!place_meeting(x+slopex,y+slopey,oCollision)){
 			slopex = walkx;
 			slopey = walky;
-			while(place_meeting(x+slopex,y+slopey,oTotalCollision)) {
+			while(place_meeting(x+slopex,y+slopey,oCollision)) {
 				slopex = lengthdir_x(movespeed,movespeed>0 ? image_angle+curangle : image_angle-curangle)
 				slopey = lengthdir_y(movespeed,movespeed>0 ? image_angle+curangle : image_angle-curangle)
 				curangle+=.5;
@@ -81,7 +82,7 @@ if (!global.paused) {
 			var totalx = abs(walkx);
 			var totaly = abs(walky);
 		
-			while (!place_meeting(x+incrx,y+incry,oTotalCollision)&&xyratio!=0&&totalx>0&&totaly>0) {
+			while (!place_meeting(x+incrx,y+incry,oCollision)&&xyratio!=0&&totalx>0&&totaly>0) {
 				x += incrx;
 				y += incry;
 			
@@ -95,58 +96,17 @@ if (!global.paused) {
 	x += walkx;
 	y += walky;
 	
-	var jumpx = lengthdir_x(jumpvel * _dt,image_angle+90);
-	var jumpy = lengthdir_y(jumpvel * _dt,image_angle+90);
-	
-	if (place_meeting(x+jumpx,y+jumpy,oTotalCollision)) {
-		var xyratio = jumpy==0 ? 0 : (abs(jumpx/jumpy))
-
-		var incrx = sign(jumpx)*precision*xyratio;
-		var incry = sign(jumpy)*precision;
-		
-		var totalx = abs(jumpx);
-		var totaly = abs(jumpy);
-		
-		while (!place_meeting(x+incrx,y+incry,oTotalCollision)&&xyratio!=0&&totalx>0&&totaly>0) {
-			x += incrx;
-			y += incry;
-			
-			totalx-=abs(incrx);
-			totaly-=abs(incry);
-		}
-		jumpx = 0;
-		jumpy = 0;
-	}
-	x += jumpx;
-	y += jumpy;
-	
-	//gravity
-	//move x
-	if (place_meeting(x+addplanx,y+addplany,oTotalCollision)) {
-		var xyratio = addplany==0 ? 0 : (abs(addplanx/addplany))
-
-		var incrx = sign(addplanx)*precision*xyratio;
-		var incry = sign(addplany)*precision;
-		
-		var totalx = abs(addplanx);
-		var totaly = abs(addplany);
-		
-		while (!place_meeting(x+incrx,y+incry,oTotalCollision)&&xyratio!=0&&totalx>0&&totaly>0) {
-			x += incrx;
-			y += incry;
-			
-			totalx-=abs(incrx);
-			totaly-=abs(incry);
-		}
-		addplanx = 0;
-		addplany = 0;
-	}
-	x += addplanx;
-	y += addplany;
+	scr_move_collide(self, jumpx, jumpy, oCollision);
+	scr_move_collide(self, addplanx, addplany, oCollision);
 	
 	jumpvel*=.9;
 	movespeed*=.7
 }
+
+oHand.x = x;
+oHand.y = y;
+oHand.image_angle = image_angle
+oHand.image_xscale = moving
 
 /*
 // Get the unmodified mask data

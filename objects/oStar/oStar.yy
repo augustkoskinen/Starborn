@@ -9,8 +9,8 @@
   "name":"oStar",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Universe",
+    "path":"folders/Objects/Universe.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -1,4 +1,5 @@
 global.addbuffer = 0;
+global.loadradius = 400;
 global.paused = false;
 
 inventoryopen = false;

@@ -21,3 +21,29 @@ function scr_get_closest_planet(player, plist) {
 		} 
 	return curplanet;
 }
+
+function scr_move_collide(obj, xmove, ymove, colobjs) {
+	var precision = .001;
+	
+	if (place_meeting(obj.x+xmove,obj.y+ymove,colobjs)) {
+		var xyratio = xmove==0 ? 0 : (abs(xmove/ymove))
+
+		var incrx = sign(xmove)*precision*xyratio;
+		var incry = sign(ymove)*precision;
+		
+		var totalx = abs(xmove);
+		var totaly = abs(ymove);
+		
+		while (!place_meeting(obj.x+incrx,obj.y+incry,colobjs)&&xyratio!=0&&totalx>0&&totaly>0) {
+			obj.x += incrx;
+			obj.y += incry;
+			
+			totalx-=abs(incrx);
+			totaly-=abs(incry);
+		}
+		xmove = 0;
+		ymove = 0;
+	}
+	obj.x += xmove;
+	obj.y += ymove;
+}
