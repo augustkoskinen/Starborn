@@ -28,7 +28,7 @@
   "origin":0,
   "parent":{
     "name":"Inventory",
-    "path":"folders/Sprites/Inventory.yy",
+    "path":"folders/Sprites/Player/Inventory.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

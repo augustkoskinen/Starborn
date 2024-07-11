@@ -16,5 +16,13 @@ MOVE_SPEED = 100;
 RUN_SPEED = 175;
 JUMP_SPEED = 350;
 
-image_speed = 0;
-image_index = 1;
+image_speed = 0
+
+state = playerstate.walking;
+
+enum playerstate {
+	walking,
+	running,
+	holding,
+	attacking
+}

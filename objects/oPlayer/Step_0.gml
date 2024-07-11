@@ -16,22 +16,46 @@ if (!global.paused) {
 	if(curmove>0) {
 		moving = curmove
 		movespeed = (keyboard_check(vk_control)?RUN_SPEED:MOVE_SPEED) * _dt;
-		sprite_index = sPlayerWR;
+		if(state == playerstate.holding)
+			sprite_index = sPlayerTRW;
+		else if(state == playerstate.attacking)
+			sprite_index = sPlayerARW;
+		else if(state == playerstate.walking)
+			sprite_index = sPlayerRW;
 		image_speed = (keyboard_check(vk_control)?RUN_SPEED/MOVE_SPEED:1);
 	} else if(curmove<0) {
 		moving = curmove
 		movespeed = -(keyboard_check(vk_control)?RUN_SPEED:MOVE_SPEED) * _dt;
-		sprite_index = sPlayerWL;
+		if(state == playerstate.holding)
+			sprite_index = sPlayerTLW;
+		else if(state == playerstate.attacking)
+			sprite_index = sPlayerALW;
+		else if(state == playerstate.walking)
+			sprite_index = sPlayerLW;
 		image_speed = (keyboard_check(vk_control)?RUN_SPEED/MOVE_SPEED:1);
 	} else {
 		if(moving == 1) {
-			sprite_index = sPlayer;
-			image_speed = 0;
-			image_index = 2;
+			if(state == playerstate.holding)
+				sprite_index = sPlayerTR;
+			else if(state == playerstate.attacking)
+				sprite_index = sPlayerAR;
+			else if(state == playerstate.walking)
+				sprite_index = sPlayerR;
+			image_speed = 1;
+		} else if(moving == -1) {
+			if(state == playerstate.holding)
+				sprite_index = sPlayerTL;
+			else if(state == playerstate.attacking)
+				sprite_index = sPlayerAL;
+			else if(state == playerstate.walking)
+				sprite_index = sPlayerL;
+			image_speed = 1;
 		} else {
-			sprite_index = sPlayer;
-			image_speed = 0;
-			image_index = 0;
+			if(state == playerstate.holding)
+				sprite_index = sPlayerTM;
+			else if(state == playerstate.walking)
+				sprite_index = sPlayerM;
+			image_speed = 1;
 		}
 	}
 	
@@ -101,6 +125,17 @@ if (!global.paused) {
 	
 	jumpvel*=.9;
 	movespeed*=.7
+	
+	
+	if(mouse_check_button(mb_left)) {
+		state = playerstate.attacking
+	} else if(mouse_check_button_released(mb_left)) {
+		state = playerstate.holding
+	}
+} else {
+	if(state == playerstate.attacking) {
+		state = playerstate.holding
+	}
 }
 
 oHand.x = x;
