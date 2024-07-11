@@ -1,4 +1,5 @@
 planet = noone;//scr_get_closest_planet(self, oPlanetManager.planetList);;
+myhealth = irandom_range(4,7);
 
 //particles
 global.psystem = part_system_create();
@@ -20,8 +21,19 @@ part_emitter_stream(global.psystem, global.treepsem, global.treeps, 50);
 function hurt() {
 	var pdir = point_direction(x,y,planet.x,planet.y)
 	
-	part_type_gravity(global.treeps,.3,pdir)
-	part_type_orientation(global.treeps, 180+pdir, 180+pdir, 0, 0, 0);
-	part_system_layer(global.psystem,layer_get_id("TreeParticles"))
-	part_particles_create(global.psystem,x+lengthdir_x(32,pdir+180),y+lengthdir_y(32,pdir+180),global.treeps,50)
+	var rep = 1;
+	
+	myhealth--;
+	if(myhealth<1) rep = 3;
+	
+	repeat(rep){
+		part_type_gravity(global.treeps,.3,pdir)
+		part_type_orientation(global.treeps, 180+pdir, 180+pdir, 0, 0, 0);
+		part_system_layer(global.psystem,layer_get_id("TreeParticles"))
+		part_particles_create(global.psystem,x+lengthdir_x(32,pdir+180),y+lengthdir_y(32,pdir+180),global.treeps,50)
+	}
+	if(rep == 3) {
+		array_delete(planet.treelist,array_get_index(planet.treelist,self),1)
+		instance_destroy()
+	}
 }

@@ -2,7 +2,6 @@ var curmove = inventoryopen ? 0 : keyboard_check(ord("D"))-keyboard_check(ord("A
 var _dt = delta_time / 1000000;
 var precision = .001;
 
-
 if(keyboard_check_pressed(vk_tab)) inventoryopen = !inventoryopen;
 
 if (!global.paused) {
@@ -132,6 +131,8 @@ if (!global.paused) {
 	} else if(mouse_check_button_released(mb_left)) {
 		state = playerstate.holding
 	}
+	
+	if(state==playerstate.holding&&keyboard_check_pressed(vk_shift)) state = playerstate.walking
 } else {
 	if(state == playerstate.attacking) {
 		state = playerstate.holding

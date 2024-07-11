@@ -12,7 +12,7 @@ if(state == itemstate.dropped) {
 	var pdir = point_direction(x,y,planet.x,planet.y);
 	image_angle = pdir+90
 
-	var g = scr_get_gravity(planet,pdir)*.5*delta_time/1000000
+	var g = scr_get_gravity(planet,point_distance(x,y,planet.x,planet.y))*.5*delta_time/1000000
 	scr_move_collide(self,lengthdir_x(g,pdir),lengthdir_y(g,pdir),oCollision);
 	
 	if(dropwait<=0&&place_meeting(x,y,oPlayer)) {
