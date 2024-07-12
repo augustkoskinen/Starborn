@@ -33,7 +33,7 @@ if(oPlayer.inventoryopen) {
 			}
 			if (array_get(array_get(invAcc,_y),_x)!=noone) {
 				draw_sprite_stretched(sItem,array_get(array_get(invAcc,_y),_x).type,_xx,_yy,_w,_h);
-				if(array_get(array_get(invAcc,_y),_x).amount>0) {
+				if(array_get(array_get(invAcc,_y),_x).amount>1) {
 					draw_set_font(tInv)
 					draw_text_transformed(_xx+40,_yy+40,array_get(array_get(invAcc,_y),_x).amount,2,2,0);
 				}
@@ -62,7 +62,7 @@ if(oPlayer.inventoryopen) {
 			}
 			if (array_get(array_get(invBody,_y),_x)!=noone) {
 				draw_sprite_stretched(sItem,array_get(array_get(invBody,_y),_x).type,_xx,_yy,_w,_h);
-				if(array_get(array_get(invBody,_y),_x).amount>0) {
+				if(array_get(array_get(invBody,_y),_x).amount>1) {
 					draw_set_font(tInv)
 					draw_text_transformed(_xx+40,_yy+40,array_get(array_get(invBody,_y),_x).amount,2,2,0);
 				}
@@ -91,7 +91,7 @@ if(oPlayer.inventoryopen) {
 		}
 		if (array_get(invHotbar,_x)!=noone) {
 			draw_sprite_stretched(sItem,array_get(invHotbar,_x).type,_xx,_yy,_w,_h);
-			if(array_get(invHotbar,_x).amount>0) {
+			if(array_get(invHotbar,_x).amount>1) {
 				draw_set_font(tInv)
 				draw_text_transformed(_xx+40,_yy+40,array_get(invHotbar,_x).amount,2,2,0);
 			}
@@ -133,12 +133,12 @@ if(oPlayer.inventoryopen) {
 		draw_sprite_stretched_ext(sItem,dragitem.type,device_mouse_x_to_gui(0)-_w/2,device_mouse_y_to_gui(0)-_h/2,_w,_h,c_white,0.5);
 	}
 } else {
-	if(keyboard_check_pressed(ord("1"))) curslot = 0;
-	if(keyboard_check_pressed(ord("2"))) curslot = 1;
-	if(keyboard_check_pressed(ord("3"))) curslot = 2;
-	if(keyboard_check_pressed(ord("4"))) curslot = 3;
-	if(keyboard_check_pressed(ord("5"))) curslot = 4;
-	if(keyboard_check_pressed(ord("6"))) curslot = 5;
+	if(keyboard_check_pressed(ord("1"))) oPlayer.curslot = 0;
+	if(keyboard_check_pressed(ord("2"))) oPlayer.curslot = 1;
+	if(keyboard_check_pressed(ord("3"))) oPlayer.curslot = 2;
+	if(keyboard_check_pressed(ord("4"))) oPlayer.curslot = 3;
+	if(keyboard_check_pressed(ord("5"))) oPlayer.curslot = 4;
+	if(keyboard_check_pressed(ord("6"))) oPlayer.curslot = 5;
 	
 	draw_sprite_stretched(sHotbar,0,0,0,sprite_get_width(sBody)*scalew,sprite_get_height(sBody)*scaleh);
 	
@@ -147,8 +147,8 @@ if(oPlayer.inventoryopen) {
 		var _yy = 166*scaleh;
 		
 		var iscurslot = false
-		if(_x==curslot) {
-			draw_sprite_stretched(sSlot,1,111*scalew+curslot*26*scalew,166*scaleh,_w,_h);
+		if(_x==oPlayer.curslot) {
+			draw_sprite_stretched(sSlot,1,111*scalew+oPlayer.curslot*26*scalew,166*scaleh,_w,_h);
 			iscurslot = true;
 		}	
 		
@@ -156,7 +156,7 @@ if(oPlayer.inventoryopen) {
 			if(!iscurslot)
 				draw_sprite_stretched(sSlot,2,_xx,_yy,_w,_h);
 			draw_sprite_stretched(sItem,array_get(invHotbar,_x).type,_xx,_yy,_w,_h);
-			if(array_get(invHotbar,_x).amount>0) {
+			if(array_get(invHotbar,_x).amount>1) {
 				draw_set_font(tInv)
 				draw_text_transformed(_xx+40,_yy+40,array_get(invHotbar,_x).amount,2,2,0);
 			}

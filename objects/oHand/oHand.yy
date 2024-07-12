@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sHandCol",
-    "path":"sprites/sHandCol/sHandCol.yy",
+    "name":"sHandLCol",
+    "path":"sprites/sHandLCol/sHandLCol.yy",
   },
   "spriteMaskId":null,
   "visible":true,

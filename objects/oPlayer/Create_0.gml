@@ -1,4 +1,5 @@
 inventoryopen = false;
+curslot = 0;
 
 grounded = 0;
 moving = 0;

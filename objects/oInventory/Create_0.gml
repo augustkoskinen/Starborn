@@ -1,5 +1,4 @@
 dragitem = noone;
-curslot = 0;
 
 invBody = array_create(3,noone);
 invAcc = array_create(3,noone);
@@ -10,6 +9,8 @@ for(var _y = 0; _y < 3; _y++)
 	
 for(var _y = 0; _y < 3; _y++)
 	array_set(invAcc,_y, array_create(2,noone));
+
+array_set(invHotbar,0,scr_create_item(1));
 
 function addItem(item) {
 	return findSpot(item);

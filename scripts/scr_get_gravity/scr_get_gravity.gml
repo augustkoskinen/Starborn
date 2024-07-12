@@ -11,6 +11,21 @@ function scr_get_gravity(planet, d){
 	return ((dis<=G_RANGE) ? (G_CONST) : (G_CONST/(d-planet.radius-G_RANGE)));
 }
 
+function scr_get_net_gravity(player, plist){
+	var netx = 0;
+	var nety = 0;
+	for(var i = 0; i < array_length(plist); i++) {
+		var curplanet = array_get(plist,i);
+		var g = scr_get_gravity(curplanet,point_distance(player.x,player.y,curplanet.x,curplanet.y))
+		netx+=lengthdir_x(g,point_direction(player.x,player.y,curplanet.x,curplanet.y))
+		nety+=lengthdir_y(g,point_direction(player.x,player.y,curplanet.x,curplanet.y))
+	}
+	return {
+		_x:netx,
+		_y:nety
+	}
+}
+
 function scr_get_closest_planet(player, plist) {
 	var curdis = -1;
 	var curplanet = noone;
@@ -26,7 +41,7 @@ function scr_move_collide(obj, xmove, ymove, colobjs) {
 	var precision = .001;
 	
 	if (place_meeting(obj.x+xmove,obj.y+ymove,colobjs)) {
-		var xyratio = xmove==0 ? 0 : (abs(xmove/ymove))
+		var xyratio = ymove==0 ? 1 : (abs(xmove/ymove))
 
 		var incrx = sign(xmove)*precision*xyratio;
 		var incry = sign(ymove)*precision;

@@ -10,6 +10,10 @@ function scr_create_item(type){
 			item.amountmax = 16;
 			break;
 		}
+		case 1: {
+			item.stackable = false;
+			break;
+		}
 	}
 	
 	if(item.stackable&&argument_count>1) {

@@ -6,11 +6,11 @@ if(keyboard_check_pressed(vk_tab)) inventoryopen = !inventoryopen;
 
 if (!global.paused) {
 	var planet = scr_get_closest_planet(self, oPlanetManager.planetList);
-	var g = scr_get_gravity(planet, point_distance(x,y,planet.x,planet.y));
+	var g = scr_get_net_gravity(self, oPlanetManager.planetList);
+	var addplanx = g._x*_dt;
+	var addplany = g._y*_dt;
+	
 	image_angle = point_direction(x,y,planet.x,planet.y)+90;
-
-	var addplanx = lengthdir_x(_dt*g,image_angle-90);
-	var addplany = lengthdir_y(_dt*g,image_angle-90);
 	
 	if(curmove>0) {
 		moving = curmove
@@ -126,23 +126,28 @@ if (!global.paused) {
 	movespeed*=.7
 	
 	
-	if(mouse_check_button(mb_left)) {
+	if(mouse_check_button(mb_left)&&!inventoryopen&&array_get(oInventory.invHotbar,curslot)!=noone&&array_get(oInventory.invHotbar,curslot).type==1) {
 		state = playerstate.attacking
-	} else if(mouse_check_button_released(mb_left)) {
+	} else if(mouse_check_button_released(mb_left)&&state == playerstate.attacking) {
 		state = playerstate.holding
 	}
-	
-	if(state==playerstate.holding&&keyboard_check_pressed(vk_shift)) state = playerstate.walking
-} else {
+} else if(global.paused||inventoryopen){
 	if(state == playerstate.attacking) {
 		state = playerstate.holding
 	}
+}
+if((state == playerstate.holding||state == playerstate.attacking)&&(array_get(oInventory.invHotbar,curslot) == noone || array_get(oInventory.invHotbar,curslot).type!=1)) {
+	state = playerstate.walking
+}
+if((state == playerstate.walking)&&(array_get(oInventory.invHotbar,curslot) != noone && array_get(oInventory.invHotbar,curslot).type == 1)) {
+	state = playerstate.holding
 }
 
 oHand.x = x;
 oHand.y = y;
 oHand.image_angle = image_angle
-oHand.image_xscale = moving
+if(moving==1) oHand.sprite_index = sHandRCol
+else if(moving==-1) oHand.sprite_index = sHandLCol
 
 /*
 // Get the unmodified mask data

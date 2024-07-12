@@ -10,7 +10,7 @@ function drop(_x, _y) {
 	x = _x;
 	y = _y;
 	state = itemstate.dropped
-	dropwait = 1;
+	dropwait = .75;
 	
 	sprite_index = sItem
 	image_index = type;
